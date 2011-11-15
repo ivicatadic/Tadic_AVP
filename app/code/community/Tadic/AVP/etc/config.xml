@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Tadic_AVP>
+			<version>1.6.0.0</version>
+		</Tadic_AVP>
+	</modules>
+
+	<global>
+		<blocks>
+			<adminhtml>
+				<rewrite>
+					<catalog_product_edit>Tadic_AVP_Block_Adminhtml_Catalog_Product_Edit</catalog_product_edit>
+				</rewrite>
+			</adminhtml>
+		</blocks>
+	</global>
+</config>
