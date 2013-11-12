@@ -1,2 +1,3 @@
-app/code/community/Tadic/AVP          app/code/community/Tadic/AVP
-app/etc/modules/Tadic_AVP.xml         app/etc/modules/Tadic_AVP.xml
+app/code/community/Tadic/AVP                            app/code/community/Tadic/AVP
+app/etc/modules/Tadic_AVP.xml                           app/etc/modules/Tadic_AVP.xml
+app/design/frontend/base/default/layout/tadic_avp.xml   app/design/frontend/base/default/layout/tadic_avp.xml
