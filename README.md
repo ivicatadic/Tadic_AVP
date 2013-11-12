@@ -1,8 +1,19 @@
 ## Magento Product Preview Button
+Easily view a product on the frontend from the Magento admin
 
-@author  Ivica Tadić <ivica.tadic@ymail.com>
+![Screenshot](https://raw.github.com/kalenjordan/Tadic_AVP/kalen_livePreview/docs/img/preview-screnshot.png)
 
-View product in frontend from Magento admin
+### Installation
+
+Install using modman
+
+    modman clone git@github.com:ivicatadic/Tadic_AVP.git
+
+### Author
+
+Ivica Tadić <ivica.tadic@ymail.com>
+
+### Details
 
 When you are editing some product in Magento admin and want to check it out in frontend of your
 Magento project, how do you find this particular product? Do you search for it,
@@ -15,6 +26,6 @@ Magento project. Simple and easy.
 
 I hope this simple extension will prove to be useful to you.
 
-Thanks to Branko Ajzele for an idea.
+### Credits
 
-Cheers
+Thanks to Branko Ajzele for an idea.
