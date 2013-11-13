@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<layout version="1.6.1.0">
+    <tadic_avp_product_preview>
+        <update handle="catalog_product_view" />
+    </tadic_avp_product_preview>
+</layout>
