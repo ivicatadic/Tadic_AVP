@@ -11,11 +11,13 @@ class Tadic_AVP_Block_Adminhtml_Catalog_Product_Edit extends Mage_Adminhtml_Bloc
 		$header = parent::getHeader();
 
 		if ($this->getProduct()->getId()) {
-            $url = $this->getUrl('tadic_avp/product/preview', array(
+            $productUrl = $this->getProduct()->getUrlInStore();
+            $previewUrl = $this->getUrl('tadic_avp/product/preview', array(
                 'id' => $this->getProductId(),
                 'key' => Mage::helper('tadic_avp/catalog_product')->getHashForProduct($this->getProductId()),
             ));
-			$header .= "&nbsp&nbsp<a href='$url' target='_blank'>view product</a>";
+			$header .= "&nbsp&nbsp<a href='$productUrl' target='_blank'>view</a>";
+            $header .= "&nbsp&nbsp<a href='$previewUrl' target='_blank'>preview</a>";
 		}
 
 		return $header;
