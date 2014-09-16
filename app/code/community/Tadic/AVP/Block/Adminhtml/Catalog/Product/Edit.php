@@ -19,12 +19,15 @@ class Tadic_AVP_Block_Adminhtml_Catalog_Product_Edit extends Mage_Adminhtml_Bloc
             return $header;
         }
 
-        $productUrl = $this->getProduct()->getUrlInStore();
+        // Add preview link only if the product is available on frontend
+        if ($this->getProduct()->isAvailable()) {
+            $header .= '&nbsp&nbsp<a href="'.$this->getProduct()->getUrlInStore().'" target="_blank">'.$this->__('view').'</a>';
+        }
+
         $previewUrl = $this->getUrl('tadic_avp/product/preview', array(
             'id' => $this->getProductId(),
             'key' => Mage::helper('tadic_avp/catalog_product')->getHashForProduct($this->getProductId()),
         ));
-        $header .= "&nbsp&nbsp<a href='$productUrl' target='_blank'>view</a>";
         $header .= "&nbsp&nbsp<a href='$previewUrl' target='_blank'>preview</a>";
 
         return $header;
