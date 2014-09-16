@@ -19,6 +19,11 @@ class Tadic_AVP_Block_Adminhtml_Catalog_Product_Edit extends Mage_Adminhtml_Bloc
             return $header;
         }
 
+        // Do not add view/preview link if the product is not assigned to the current store
+        if ( ! in_array($this->getProduct()->getStoreId(), $this->getProduct()->getStoreIds())) {
+            return $header;
+        }
+
         // Add preview link only if the product is available on frontend
         if ($this->getProduct()->isAvailable()) {
             $header .= '&nbsp&nbsp<a href="'.$this->getProduct()->getUrlInStore().'" target="_blank">'.$this->__('view').'</a>';
