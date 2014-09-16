@@ -2,8 +2,38 @@
 
 class Tadic_AVP_ProductController extends Mage_Core_Controller_Front_Action
 {
+    protected function _requestAuthentication($msg = NULL)
+    {
+        header('HTTP/1.1 401 Unauthorized');
+        header('WWW-Authenticate: Basic realm="'.$this->__('Product Preview').'"');
+        if ( ! $msg) {
+            $msg = $this->__('You must be authenticated to view this page.');
+        }
+        echo $msg;
+        exit;
+    }
+
+    public function preDispatch()
+    {
+        parent::preDispatch();
+
+        if (empty($_SERVER['PHP_AUTH_USER']) || empty($_SERVER['PHP_AUTH_PW'])) {
+            $this->_requestAuthentication();
+        }
+
+        try {
+            $user = Mage::getModel('admin/user'); /** @var $user Mage_Admin_Model_User */
+            if ( ! $user->authenticate($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'])) {
+                Mage::throwException($this->__('Invalid login.'));
+            }
+        }
+        catch (Exception $e) {
+            $this->_requestAuthentication($e->getMessage());
+        }
+    }
+
     /**
-     * This is a straigh copy/paste of
+     * This is a straight copy/paste of
      *
      *   Mage_Catalog_ProductController::viewAction()
      *
