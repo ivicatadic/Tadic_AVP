@@ -14,14 +14,15 @@ class Tadic_AVP_Block_Adminhtml_Catalog_Product_Edit extends Mage_Adminhtml_Bloc
             return $header;
         }
 
-        // Do not add view/preview link at the default scope
-        if ( ! Mage::app()->isSingleStoreMode() && $this->getProduct()->getStore()->isAdmin()) {
-            return $header;
-        }
-
-        // Do not add view/preview link if the product is not assigned to the current store
-        if ( ! in_array($this->getProduct()->getStoreId(), $this->getProduct()->getStoreIds())) {
-            return $header;
+        if ( ! Mage::app()->isSingleStoreMode()) {
+            // Do not add view/preview link at the default scope
+            if ($this->getProduct()->getStore()->isAdmin()) {
+                return $header;
+            }
+            // Do not add view/preview link if the product is not assigned to the current store
+            if ( ! in_array($this->getProduct()->getStoreId(), $this->getProduct()->getStoreIds())) {
+                return $header;
+            }
         }
 
         // Add preview link only if the product is available on frontend
