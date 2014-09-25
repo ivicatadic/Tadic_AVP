@@ -17,18 +17,20 @@ class Tadic_AVP_ProductController extends Mage_Core_Controller_Front_Action
     {
         parent::preDispatch();
 
-        if (empty($_SERVER['PHP_AUTH_USER']) || empty($_SERVER['PHP_AUTH_PW'])) {
-            $this->_requestAuthentication();
-        }
-
-        try {
-            $user = Mage::getModel('admin/user'); /** @var $user Mage_Admin_Model_User */
-            if ( ! $user->authenticate($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'])) {
-                Mage::throwException($this->__('Invalid login.'));
+        if (Mage::getStoreConfigFlag(Tadic_AVP_Helper_Data::XML_PATH_HTTP_BASIC_AUTH_ENABLED)) {
+            if (empty($_SERVER['PHP_AUTH_USER']) || empty($_SERVER['PHP_AUTH_PW'])) {
+                $this->_requestAuthentication();
             }
-        }
-        catch (Exception $e) {
-            $this->_requestAuthentication($e->getMessage());
+
+            try {
+                $user = Mage::getModel('admin/user'); /** @var $user Mage_Admin_Model_User */
+                if ( ! $user->authenticate($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'])) {
+                    Mage::throwException($this->__('Invalid login.'));
+                }
+            }
+            catch (Exception $e) {
+                $this->_requestAuthentication($e->getMessage());
+            }
         }
     }
 
