@@ -45,6 +45,8 @@ class Tadic_AVP_ProductController extends Mage_Core_Controller_Front_Action
     public function previewAction()
     {
         // Get initial data from request
+        $defaultStoreViewId = ($storeView = Mage::app()->getDefaultStoreView()) ? $storeView->getId() : null;
+        $storeId = (int) $this->getRequest()->getParam('store_id', $defaultStoreViewId);
         $categoryId = (int) $this->getRequest()->getParam('category', false);
         $productId  = (int) $this->getRequest()->getParam('id');
         $specifyOptions = $this->getRequest()->getParam('options');
@@ -57,6 +59,10 @@ class Tadic_AVP_ProductController extends Mage_Core_Controller_Front_Action
         $params->setSpecifyOptions($specifyOptions);
 
         // Render page
+        $appEmulation = Mage::getSingleton('core/app_emulation');
+        $initialEnvironmentInfo = $appEmulation->startEnvironmentEmulation($storeId);
+        // Fix environment emulation bug. Set store object to design instead of store id.
+        Mage::getDesign()->setStore(Mage::app()->getStore($storeId));
         try {
             $viewHelper->prepareAndRender($productId, $this, $params);
         } catch (Exception $e) {
@@ -71,5 +77,6 @@ class Tadic_AVP_ProductController extends Mage_Core_Controller_Front_Action
                 $this->_forward('noRoute');
             }
         }
+        $appEmulation->stopEnvironmentEmulation($initialEnvironmentInfo);
     }
 }
