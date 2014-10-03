@@ -31,9 +31,8 @@ class Tadic_AVP_Block_Adminhtml_Catalog_Product_Edit extends Mage_Adminhtml_Bloc
         }
         // Preview link
         else {
-            $previewUrl = $this->getUrl('tadic_avp/product/preview', array(
-                'id' => $this->getProductId(),
-                'store_id' => $this->getProduct()->getStoreId(),
+            $previewUrl = Mage::getModel('core/url')->setStore($this->getProduct()->getStore())->getUrl('tadic_avp/product/preview', array(
+                'id' => $this->getProductId()
             ));
             $header .= '&nbsp&nbsp<a href="'.$previewUrl.'" target="_blank">'.$this->__('preview').'</a>';
         }

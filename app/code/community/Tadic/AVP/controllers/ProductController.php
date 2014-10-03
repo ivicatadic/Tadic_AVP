@@ -45,8 +45,7 @@ class Tadic_AVP_ProductController extends Mage_Core_Controller_Front_Action
     public function previewAction()
     {
         // Get initial data from request
-        $defaultStoreViewId = ($storeView = Mage::app()->getDefaultStoreView()) ? $storeView->getId() : null;
-        $storeId = (int) $this->getRequest()->getParam('store_id', $defaultStoreViewId);
+        $storeId = (int) $this->getRequest()->getParam('store_id', Mage::app()->getStore()->getId());
         $categoryId = (int) $this->getRequest()->getParam('category', false);
         $productId  = (int) $this->getRequest()->getParam('id');
         $specifyOptions = $this->getRequest()->getParam('options');
