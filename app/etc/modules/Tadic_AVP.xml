@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-	<modules>
-		<Tadic_AVP>
-			<active>true</active>
-			<codePool>community</codePool>
-			<depends>
-				<Mage_Adminhtml/>
-			</depends>
-		</Tadic_AVP>
-	</modules>
+    <modules>
+        <Tadic_AVP>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Adminhtml/>
+            </depends>
+        </Tadic_AVP>
+    </modules>
 </config>
