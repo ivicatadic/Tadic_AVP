@@ -15,6 +15,7 @@ class Tadic_AVP_Block_Adminhtml_Catalog_Product_Edit extends Mage_Adminhtml_Bloc
             $previewUrl = $this->getUrl('tadic_avp/product/preview', array(
                 'id' => $this->getProductId(),
                 'key' => Mage::helper('tadic_avp/catalog_product')->getHashForProduct($this->getProductId()),
+                '_store' => $this->getProduct()->getStoreId(),
             ));
 			$header .= "&nbsp&nbsp<a href='$productUrl' target='_blank'>view</a>";
             $header .= "&nbsp&nbsp<a href='$previewUrl' target='_blank'>preview</a>";
